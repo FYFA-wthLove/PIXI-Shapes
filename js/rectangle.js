@@ -21,7 +21,6 @@
         );
         document.body.appendChild(app.view);
 
-
         // Create container for number of shapes
 
         let totalContainer = new PIXI.Container();
@@ -52,17 +51,12 @@
         let state = play;
         app.ticker.add(delta => gameLoop(delta));
 
-
-
         let decreaseNumberOfShapes = new PIXI.Graphics();
         let increaseNumberOfShapes = new PIXI.Graphics();
         decreaseNumberOfShapes.beginFill(0xAAAAAA);
         increaseNumberOfShapes.beginFill(0xAAAAAA);
         decreaseNumberOfShapes.drawRect(0, 760, 50, 40);
         increaseNumberOfShapes.drawRect(50, 760, 50, 40);
-        // decreaseNumberOfShapes.interactive = true;
-        // decreaseNumberOfShapes.buttonMode = true;
-        // decreaseNumberOfShapes.on("pointerdown", decreaseClick);
 
         increaseNumberOfShapes.interactive = true;
         increaseNumberOfShapes.buttonMode = true;
@@ -95,7 +89,6 @@
         shapesNumberContainer.addChild(textDecrease);
         shapesNumberContainer.addChild(textIncrease);
 
-
         // speed buttons
         let decreaseSpeedOfShapes = new PIXI.Graphics();
         let increaseSpeedOfShapes = new PIXI.Graphics();
@@ -109,7 +102,6 @@
         increaseSpeedOfShapes.buttonMode = true;
         shapesNumberContainer.addChild(decreaseSpeedOfShapes);
         shapesNumberContainer.addChild(increaseSpeedOfShapes);
-
 
         let textDecreaseSpeed = new PIXI.Text("-");
         let textIncreaseSpeed = new PIXI.Text("+");
@@ -138,8 +130,6 @@
         shapesNumberContainer.addChild(textDecreaseSpeed);
         shapesNumberContainer.addChild(textIncreaseSpeed);
 
-
-
         const shapes = [];
         const shapesFrame = [
             "images/rectangle.png",
@@ -156,31 +146,21 @@
         
             let rectangle = PIXI.Sprite.from(frameName);
             
-        
             rectangle.anchor.set(0.5);
             rectangle.scale.set(0.8 + Math.random() * 0.3);   // размер
             rectangle.x = Math.random() * app.screen.width;
-            //rectangle.y = Math.random() * app.screen.height;
 
             rectangle.tint = Math.random() * 0xFFFFFF;
         
-            //rectangle.direction = Math.random() * Math.PI * 2;
             rectangle.direction = rectangle.y;
-        
-            //rectangle.turningSpeed = Math.random() - 0.8;
+
             rectangle.turningSpeed = rectangle.y;
         
             rectangle.speed = shapesSpeed + Math.random() * 2;
-            //rectangle.speed = shapesSpeed;
-
-
-            //app.stage.interactive = true;
-            //app.stage.addChild(rectangle);
 
             totalContainer.addChild(rectangle);
             shapes.push(rectangle);
         
-
             rectangle.interactive = true;
             rectangle.buttonMode = true;
             rectangle.on("pointerdown", () => {
@@ -195,7 +175,6 @@
                 console.log("Click")
             });
         
-
             decreaseNumberOfShapes.interactive = true;
             decreaseNumberOfShapes.buttonMode = true;
             decreaseNumberOfShapes.on("pointerdown", () => {
@@ -219,20 +198,11 @@
             });
         }
 
-
-            
-
-        
-
-
-
-        
         const rectangleBoundsPadding = 50;   // периодичность
         const rectangleBounds = new PIXI.Rectangle(-rectangleBoundsPadding, -rectangleBoundsPadding,
             app.screen.width + rectangleBoundsPadding * 2,
             app.screen.height + rectangleBoundsPadding * 2);
         
-
         app.ticker.add(() => {
             for (let i = 0; i < shapes.length; i++){
                 const rectangle = shapes[i];
@@ -255,9 +225,6 @@
                 }     
             }
         });
-
-        
-
 
         function gameLoop(delta){
             state(delta);
